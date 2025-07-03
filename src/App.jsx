@@ -25,6 +25,10 @@ useEffect(() => {
         setpopup(false);
         console.log('popup false');
       }
+      // console.log('Event target element ',event.target);
+      // console.log('Pop Ref current ',popupRef.current);
+      // console.log('contains : ',!popupRef.current.contains(event.target));
+      
     };
     console.log('Inside useEffect ');
 
@@ -37,7 +41,7 @@ useEffect(() => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
+  }, [popup]);
 
   const handleEnterPress = (e) =>{
     if(e.key === 'Enter'){
@@ -83,8 +87,8 @@ useEffect(() => {
         ))
        }
       </div>
-      {popup &&  <div className='popup' ref={popupRef}>
-          <div className='popup-body' >
+      {popup &&  <div className='popup' >
+          <div className='popup-body' ref={popupRef}>
             {
                (() => {
                    const matched = inputText.find((obj) => obj.id === clickedID);
